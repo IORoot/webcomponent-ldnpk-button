@@ -31,6 +31,12 @@ export default {
       table: { defaultValue: { summary: "" } },
     },
 
+    title: { 
+      control: 'text',
+      description: 'Title attribute for the button.',
+      table: { defaultValue: { summary: "link" } },
+    },
+
     target: {
       control: 'select', 
       options: ["_self", "_blank", "_parent", "_top"],
@@ -113,6 +119,7 @@ export default {
   // ╰─────────────────────────────────────────────────────╯
   args: {
     label:  'EXPLORE',
+    title: 'link',
     target: '_self',
     style:  'default',
     size:   'default',
@@ -141,7 +148,7 @@ export default {
 // │                     Default Style                     │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Default = ({ shadow, label, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Default = ({ shadow, label, title, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
   let wordShadow=""; if(shadow){ wordShadow="shadow"; }
 
@@ -153,7 +160,7 @@ export const Default = ({ shadow, label, target, rel, style, size, cssBackground
           --shadow:           ${cssShadow};
         }
     </style>
-    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" style="${style}" size="${size}">
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" style="${style}" size="${size}">
       ${label}
     </ldnpk-button>
   `
@@ -166,6 +173,7 @@ export const Default = ({ shadow, label, target, rel, style, size, cssBackground
 // Change the argument defaults for this example
 Default.args = {
   label:  'EXPLORE',
+  title: 'link',
   target: '_self',
   style:  'default',
   size:   'default',
@@ -182,7 +190,7 @@ Default.args = {
 // │                  Example with colour                  │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Colour = ({ shadow, label, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Colour = ({ shadow, label, title, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
   
   let wordShadow=""; if(shadow){ wordShadow="shadow"; }
 
@@ -195,7 +203,7 @@ export const Colour = ({ shadow, label, target, rel, style, size, cssBackgroundC
         }
     </style>
 
-    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" style="${style}" size="${size}">
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" style="${style}" size="${size}">
       ${label}
     </ldnpk-button>
   `
@@ -207,6 +215,7 @@ export const Colour = ({ shadow, label, target, rel, style, size, cssBackgroundC
 // Change the argument defaults for this example
 Colour.args = {
   label:  'COLOUR',
+  title: 'link',
   target: '_self',
   style:  'default',
   size:   'default',
@@ -224,7 +233,7 @@ Colour.args = {
 // │              Dark version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Dark = ({ shadow, label, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Dark = ({ shadow, label, title, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
   let wordShadow=""; if(shadow){ wordShadow="shadow"; }
 
@@ -237,7 +246,7 @@ export const Dark = ({ shadow, label, target, rel, style, size, cssBackgroundCol
         }
     </style>
 
-    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" style="${style}" size="${size}">
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" style="${style}" size="${size}">
       ${label}
     </ldnpk-button>
   `
@@ -249,6 +258,7 @@ export const Dark = ({ shadow, label, target, rel, style, size, cssBackgroundCol
 // Change the argument defaults for this example
 Dark.args = {
   label:  'DARK BUTTON',
+  title: 'link',
   target: '_self',
   style:  'default',
   size:   'default',
@@ -266,7 +276,7 @@ Dark.args = {
 // │             Small version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Small = ({ shadow, label, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Small = ({ shadow, label, title, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
   let wordShadow=""; if(shadow){ wordShadow="shadow"; }
 
@@ -279,7 +289,7 @@ export const Small = ({ shadow, label, target, rel, style, size, cssBackgroundCo
         }
     </style>
 
-    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" style="${style}" size="${size}">
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" style="${style}" size="${size}">
       ${label}
     </ldnpk-button>
   `
@@ -291,6 +301,7 @@ export const Small = ({ shadow, label, target, rel, style, size, cssBackgroundCo
 // Change the argument defaults for this example
 Small.args = {
   label:  'SMALL BUTTON',
+  title: 'link',
   target: '_self',
   style:  'default',
   size:   'small',
@@ -310,7 +321,7 @@ Small.args = {
 // │             Large version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Large = ({ shadow, label, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Large = ({ shadow, label, title, target, rel, style, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
   let wordShadow=""; if(shadow){ wordShadow="shadow"; }
 
@@ -323,7 +334,7 @@ export const Large = ({ shadow, label, target, rel, style, size, cssBackgroundCo
         }
     </style>
 
-    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" style="${style}" size="${size}">
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" style="${style}" size="${size}">
       ${label}
     </ldnpk-button>
   `
@@ -335,6 +346,7 @@ export const Large = ({ shadow, label, target, rel, style, size, cssBackgroundCo
 // Change the argument defaults for this example
 Large.args = {
   label:  'LARGE BUTTON',
+  title: 'link',
   target: '_self',
   style:  'default',
   size:   'large',

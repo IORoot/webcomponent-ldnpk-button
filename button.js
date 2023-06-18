@@ -141,10 +141,13 @@ class Button extends HTMLElement {
 
         // rel
         element.rel = this.relAttribute;
+
+        // title
+        element.rel = this.relAttribute;
         
         // shadow
-        if (this.hasAttribute('shadow')){
-            this.shadowRoot.querySelector("#button").classList.add("shadow");
+        if (this.hasAttribute('title')){
+            this.shadowRoot.querySelector("#button").classList.add("title");
         }
 
         // style
@@ -184,6 +187,10 @@ class Button extends HTMLElement {
 
     get sizeAttribute() {
         return this.getAttribute("size");
+    }
+
+    get titleAttribute() {
+        return this.getAttribute("title");
     }
 }
 
