@@ -2,24 +2,21 @@
 // https://css-tricks.com/a-complete-guide-to-links-and-buttons/
 
 
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║                     Add the template                     ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │                   Add the template                    │
+// ╰───────────────────────────────────────────────────────╯
 const template = document.createElement('template');
 
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║                INCLUDES / LINKS / SCRIPTS                ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │              INCLUDES / LINKS / SCRIPTS               │
+// ╰───────────────────────────────────────────────────────╯
 let html = /* html */` 
     <link href="https://fonts.cdnfonts.com/css/inter" rel="stylesheet">
 `;
 
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║                        STYLESHEET                        ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │                      STYLESHEET                       │
+// ╰───────────────────────────────────────────────────────╯
 html += /* html */` 
     <style>
 
@@ -27,8 +24,8 @@ html += /* html */`
             /* Variables  */
             --backgroundColour: #F3F4F6;
             --foregroundColour: #000000;
-
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow:           0 4px 6px -1px rgb(0 0 0 / 0.1), 
+                                0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
         
 
@@ -38,8 +35,9 @@ html += /* html */`
             display: inline-block;
 
             /* Size  */
-            padding: 1rem 2rem;
+            padding: 0rem 2rem;
             border-radius: 0.5rem;
+            margin-right: auto;
 
             /* Presentation  */
             background: var(--backgroundColour);
@@ -48,7 +46,12 @@ html += /* html */`
             font-weight: 400;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Droid Sans', 'Helvetica Neue', sans-serif;
             text-decoration: none;
-            line-height: 1rem;
+            line-height: 3rem;
+        }
+
+        #insideflex {
+            display: flex;
+            gap: 0.5rem;
         }
 
         .shadow {
@@ -84,18 +87,38 @@ html += /* html */`
             font-size: 1.5rem;
         }
 
-    /*  ╭──────────────────────────────────────────────────────────╮
-        │                       HOVER STATE                        │
-        ╰──────────────────────────────────────────────────────────╯*/
+        #suffix,
+        #prefix {
+            /* Position */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Presentation  */ 
+            fill: var(--foregroundColour);
+        }
+
+    /*  ╭───────────────────────────────────╮
+        │ HOVER STATE                       │
+        ╰───────────────────────────────────╯ */
         a:hover {
-            background: var(--foregroundColour);
+            /* Presentation  */ 
+            background: var(--foregroundColour);            /* Reversed */
             color: var(--backgroundColour);
         }
 
-    /*  ╭──────────────────────────────────────────────────────────╮
-        │                       FOCUS STATE                        │
-        ╰──────────────────────────────────────────────────────────╯*/
+        a:hover #suffix,
+        a:hover #prefix {
+            /* Presentation  */ 
+            fill: var(--backgroundColour);                  /* Glyph Hover */
+        }
+
+    /*  ╭───────────────────────────────────╮
+        │ FOCUS STATE                       │
+        ╰───────────────────────────────────╯ */
         a:focus {
+            /* Presentation  */ 
             outline: 1px solid #333333;
         }
         
@@ -104,23 +127,31 @@ html += /* html */`
 `;
 
 
-// ╔══════════════════════════════════════════════════════════╗
-// ║                         TEMPLATE                         ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │                       TEMPLATE                        │
+// ╰───────────────────────────────────────────────────────╯
 html += /* html */`
-    <a id="button"><slot></slot></a>
+    <a id="button">
+        <div id="insideflex">
+            <div id="prefix">
+                <slot name="prefix"></slot>
+            </div>
+            <slot></slot>
+            <div id="suffix">
+                <slot name="suffix"></slot>
+            </div>
+        </div>
+    </a>
 `;
 
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║                     ADD TO TEMPLATE                      ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │                    ADD TO TEMPLATE                    │
+// ╰───────────────────────────────────────────────────────╯
 template.innerHTML =  html
 
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║                   DEFINE WEBCOMPONENT                    ║
-// ╚══════════════════════════════════════════════════════════╝
+// ╭───────────────────────────────────────────────────────╮
+// │                  DEFINE WEBCOMPONENT                  │
+// ╰───────────────────────────────────────────────────────╯
 class Button extends HTMLElement {
 
     constructor() {
@@ -143,18 +174,18 @@ class Button extends HTMLElement {
         element.rel = this.relAttribute;
 
         // title
-        element.rel = this.relAttribute;
+        element.rel = this.titleAttribute;
         
         // shadow
-        if (this.hasAttribute('title')){
-            this.shadowRoot.querySelector("#button").classList.add("title");
+        if (this.hasAttribute('shadow')){
+            this.shadowRoot.querySelector("#button").classList.add("shadow");
         }
 
-        // style
-        if (this.hasAttribute('style')){                    
+        // shape
+        if (this.hasAttribute('shape')){                    
             this.shadowRoot.querySelector("#button")
                 .classList
-                .add(this.styleAttribute);
+                .add(this.shapeAttribute);
         }
 
         // size
@@ -164,11 +195,16 @@ class Button extends HTMLElement {
                 .add(this.sizeAttribute);
         }
 
+        // width (minus padding)
+        if (this.hasAttribute('width')){
+            element.style.width = 'calc('+this.widthAttribute+' - 4rem)';
+        }
+
     }
 
-    // ╭──────────────────────────────────────────────────────────╮
-    // │                    GETTERS / SETTERS                     │
-    // ╰──────────────────────────────────────────────────────────╯
+// ╭───────────────────────────────────────────────────────╮
+// │                   GETTERS / SETTERS                   │
+// ╰───────────────────────────────────────────────────────╯
     get hrefAttribute() {
         return this.getAttribute("href");
     }
@@ -181,8 +217,8 @@ class Button extends HTMLElement {
         return this.getAttribute("rel");
     }
 
-    get styleAttribute() {
-        return this.getAttribute("style");
+    get shapeAttribute() {
+        return this.getAttribute("shape");
     }
 
     get sizeAttribute() {
@@ -191,6 +227,10 @@ class Button extends HTMLElement {
 
     get titleAttribute() {
         return this.getAttribute("title");
+    }
+
+    get widthAttribute() {
+        return this.getAttribute("width");
     }
 }
 
