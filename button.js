@@ -11,7 +11,7 @@ const template = document.createElement('template');
 // │              INCLUDES / LINKS / SCRIPTS               │
 // ╰───────────────────────────────────────────────────────╯
 let html = /* html */` 
-    <link href="https://fonts.cdnfonts.com/css/inter" rel="stylesheet">
+
 `;
 
 // ╭───────────────────────────────────────────────────────╮
@@ -77,6 +77,7 @@ html += /* html */`
 
             /* Presentation */
             font-size: 0.75rem;
+            line-height: 1rem;
         }
 
         .large {
