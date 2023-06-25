@@ -1,3 +1,7 @@
+import { twind, cssom, observe, install } from "@twind/core";
+import "construct-style-sheets-polyfill";
+import config from "../../twind.config.js";
+
 // links
 // https://css-tricks.com/a-complete-guide-to-links-and-buttons/
 
@@ -148,7 +152,7 @@ html += /* html */`
 // ╭───────────────────────────────────────────────────────╮
 // │                    ADD TO TEMPLATE                    │
 // ╰───────────────────────────────────────────────────────╯
-template.innerHTML =  html
+template.innerHTML = html
 
 // ╭───────────────────────────────────────────────────────╮
 // │                  DEFINE WEBCOMPONENT                  │
@@ -163,7 +167,17 @@ class Button extends HTMLElement {
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(clone);
 
+        // TWIND Setup
+        const sheet = cssom(new CSSStyleSheet());
+        const tw = twind(config, sheet);
+        const theshadowRoot = this.shadowRoot;
+        theshadowRoot.adoptedStyleSheets = [sheet.target];
+        observe(tw, theshadowRoot);
+
         const element = this.shadowRoot.querySelector("a");
+
+        // Set classes on navbar
+        element.classList.add(...this.classAttribute);
 
         // HREF
         element.href = this.hrefAttribute;
@@ -176,36 +190,36 @@ class Button extends HTMLElement {
 
         // title
         element.rel = this.titleAttribute;
-        
+
         // shadow
-        if (this.hasAttribute('shadow')){
+        if (this.hasAttribute('shadow')) {
             this.shadowRoot.querySelector("#button").classList.add("shadow");
         }
 
         // shape
-        if (this.hasAttribute('shape')){                    
+        if (this.hasAttribute('shape')) {
             this.shadowRoot.querySelector("#button")
                 .classList
                 .add(this.shapeAttribute);
         }
 
         // size
-        if (this.hasAttribute('size')){                    
+        if (this.hasAttribute('size')) {
             this.shadowRoot.querySelector("#button")
                 .classList
                 .add(this.sizeAttribute);
         }
 
         // width (minus padding)
-        if (this.hasAttribute('width')){
-            element.style.width = 'calc('+this.widthAttribute+' - 4rem)';
+        if (this.hasAttribute('width')) {
+            element.style.width = 'calc(' + this.widthAttribute + ' - 4rem)';
         }
 
     }
 
-// ╭───────────────────────────────────────────────────────╮
-// │                   GETTERS / SETTERS                   │
-// ╰───────────────────────────────────────────────────────╯
+    // ╭───────────────────────────────────────────────────────╮
+    // │                   GETTERS / SETTERS                   │
+    // ╰───────────────────────────────────────────────────────╯
     get hrefAttribute() {
         return this.getAttribute("href");
     }
@@ -232,6 +246,10 @@ class Button extends HTMLElement {
 
     get widthAttribute() {
         return this.getAttribute("width");
+    }
+
+    get classAttribute() {
+        return this.classList;
     }
 }
 
