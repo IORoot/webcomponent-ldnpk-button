@@ -39,7 +39,7 @@ html += /* html */`
             display: inline-block;
 
             /* Size  */
-            padding: 0rem 2rem;
+            padding: 0rem 1rem;
             border-radius: 0.5rem;
             margin-right: auto;
 
@@ -50,6 +50,7 @@ html += /* html */`
             font-weight: 400;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Droid Sans', 'Helvetica Neue', sans-serif;
             text-decoration: none;
+            text-align: center;
             line-height: 3rem;
         }
 
