@@ -137,7 +137,7 @@ html += /* html */`
 // │                       TEMPLATE                        │
 // ╰───────────────────────────────────────────────────────╯
 html += /* html */`
-    <a id="button">
+    <a id="button" class="">
         <div id="insideflex">
 
             <div id="prefix">
@@ -149,7 +149,8 @@ html += /* html */`
                     flex-col
                     gap-0
                     text-left
-                    m-auto">
+                    mr-auto
+                    my-auto">
 
                     <div class="leading-6">
                         <slot></slot>
