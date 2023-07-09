@@ -589,3 +589,58 @@ WidePrefixIcon.args = {
   cssBackgroundColour: 'var(--color-blue-500)',
   cssForegroundColour: 'var(--color-blue-100)',
 };
+
+
+
+// ╭───────────────────────────────────────────────────────╮
+// │                                                       │
+// │    Wide Prefix version of button with description     │
+// │                                                       │
+// ╰───────────────────────────────────────────────────────╯
+export const DescriptionPrefixIcon = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
+
+  let htmlString = /* html */`
+    <style>
+        ldnpk-button {
+          --backgroundColour: ${cssBackgroundColour};
+          --foregroundColour: ${cssForegroundColour};
+          --shadow:           ${cssShadow};
+        }
+        #logo {
+
+        }
+    </style>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;visibility:hidden;">
+      <symbol viewBox="0 0 185 120" id="logo">
+        <path d="M24,24 L24,96 L106.639907,96 L59.9640453,24 L24,24 Z M78.3600926,24 L125.035955,96 L161,96 L161,24 L78.3600926,24 Z"></path>
+      </symbol>
+    </svg>
+
+
+    <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}" width="${width}">
+
+      <!-- Glyph Prefix -->
+      <svg slot="prefix" role="img" aria-label="glyph" style="width:2rem;height:2rem">
+          <use xlink:href="#logo"></use>
+      </svg>
+      
+      ${label}
+      <div slot="description">${description}</div>
+    </ldnpk-button>
+  `
+
+  return htmlString;
+
+};
+
+// Change the argument defaults for this example
+DescriptionPrefixIcon.args = {
+  label: 'GLYPH PREFIX',
+  description: 'extra information',
+  cssBackgroundColour: 'var(--color-purple-500)',
+  cssForegroundColour: 'var(--color-purple-100)',
+};
