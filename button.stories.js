@@ -7,90 +7,101 @@ import './button.js';
 // ╚═══════════════════════════════════════════════════════════════════════════╝
 
 export default {
-  title: 'LondonParkour/Button',                            
+  title: 'LondonParkour/Button',
   component: '<ldnpk-button></ldnpk-button>',
   tags: ['autodocs'],
 
   // Docs Page Description
-  parameters: { docs: { description: { component: 
-    'The LondonParkour Button Component.',
-  }, }, },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The LondonParkour Button Component.',
+      },
+    },
+  },
 
   // ╭─────────────────────────────────────────────────────╮
   // │                 ARGUMENTS (CONTROLS)                │
   // ╰─────────────────────────────────────────────────────╯
   argTypes: {
 
-    
-    label: { 
+
+    label: {
       control: 'text',
       description: 'Text for the button.',
       table: { defaultValue: { summary: "" } },
     },
 
-    title: { 
+    description: {
+      control: 'text',
+      description: 'Description Text sits under the text.',
+      table: { defaultValue: { summary: "" } },
+    },
+
+    title: {
       control: 'text',
       description: 'Title attribute for the button.',
       table: { defaultValue: { summary: "link" } },
     },
 
     target: {
-      control: 'select', 
+      control: 'select',
       options: ["_self", "_blank", "_parent", "_top"],
       description: 'DO NOT send to `_blank` for good SEO.',
       table: { defaultValue: { summary: "_self" } },
     },
 
     rel: {
-      control: 'multi-select', 
+      control: 'multi-select',
       options: [
-          "nofollow",
-          "noopener",
-          "noreferrer",
-          "directory",
-          "tag",
-          "help",
-          "ugc",
-          "sponsored"
-        ],
+        "nofollow",
+        "noopener",
+        "noreferrer",
+        "directory",
+        "tag",
+        "help",
+        "ugc",
+        "sponsored"
+      ],
       description: 'Link relationship to target.',
       table: { defaultValue: { summary: "" } },
     },
 
     shape: {
-      control: 'select', 
-      options: ["default", "ghost", "outline"] ,
+      control: 'select',
+      options: ["default", "ghost", "outline"],
       description: 'The design shape of the button.',
       table: { defaultValue: { summary: "default" } },
     },
     size: {
-      control: 'select', 
+      control: 'select',
       options: ["default", "small", "large"],
       description: 'The size of the button.',
       table: { defaultValue: { summary: "default" } },
     },
-    shadow: { 
+    shadow: {
       control: 'boolean',
       description: 'Adds a shadow to the button.',
       table: { defaultValue: { summary: false } },
     },
 
-    width: { 
+    width: {
       control: 'text',
       description: 'Override width of the button. Will also left-align text.',
       table: { defaultValue: { summary: '' } },
     },
 
-  // ╭─────────────────────────────────────────────────────╮
-  // │                 CUSTOM CSS VARIABLES                │
-  // ╰─────────────────────────────────────────────────────╯
+    // ╭─────────────────────────────────────────────────────╮
+    // │                 CUSTOM CSS VARIABLES                │
+    // ╰─────────────────────────────────────────────────────╯
     cssBackgroundColour: {
       name: '--backgroundColour',
       control: 'text',
       description: 'Override the default background colour.',
-      table: { 
-        defaultValue: { summary: "#F3F4F6" }, 
-        category: "CSS Custom Properties" 
+      table: {
+        defaultValue: { summary: "#F3F4F6" },
+        category: "CSS Custom Properties"
       },
     },
 
@@ -98,9 +109,9 @@ export default {
       name: '--foregroundColour',
       control: 'text',
       description: 'Override the default foreground colour.',
-      table: { 
-        defaultValue: { summary: "#000000" }, 
-        category: "CSS Custom Properties" 
+      table: {
+        defaultValue: { summary: "#000000" },
+        category: "CSS Custom Properties"
       },
     },
 
@@ -108,9 +119,9 @@ export default {
       name: '--shadow',
       control: 'text',
       description: 'Override the default background colour.',
-      table: { 
-        defaultValue: { summary: "#F3F4F6" }, 
-        category: "CSS Custom Properties" 
+      table: {
+        defaultValue: { summary: "#F3F4F6" },
+        category: "CSS Custom Properties"
       },
     },
   },
@@ -120,18 +131,19 @@ export default {
   // │                   ARGUMENT DEFAULTS                 │
   // ╰─────────────────────────────────────────────────────╯
   args: {
-    label:  'EXPLORE',
+    label: 'EXPLORE',
+    description: '',
     title: 'link',
     target: '_self',
-    shape:  'default',
-    size:   'default',
+    shape: 'default',
+    size: 'default',
     shadow: '',
 
-    cssBackgroundColour:   '#F3F4F6',
-    cssForegroundColour:   'black',
-    cssShadow:             '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);',
+    cssBackgroundColour: '#F3F4F6',
+    cssForegroundColour: 'black',
+    cssShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);',
   },
-  
+
 
 };
 
@@ -150,9 +162,9 @@ export default {
 // │                     Default Style                     │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Default = ({ shadow, label, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Default = ({ shadow, label, description, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
       <style>
@@ -164,6 +176,7 @@ export const Default = ({ shadow, label, title, target, rel, shape, size, cssBac
     </style>
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -174,7 +187,7 @@ export const Default = ({ shadow, label, title, target, rel, shape, size, cssBac
 
 // Change the argument defaults for this example
 Default.args = {
-  label:  'DEFAULT',
+  label: 'DEFAULT',
 };
 
 
@@ -183,9 +196,9 @@ Default.args = {
 // │                  Example with colour                  │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Colour = ({ shadow, label, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
-  
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+export const Colour = ({ shadow, label, description, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -198,6 +211,7 @@ export const Colour = ({ shadow, label, title, target, rel, shape, size, cssBack
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -207,10 +221,10 @@ export const Colour = ({ shadow, label, title, target, rel, shape, size, cssBack
 
 // Change the argument defaults for this example
 Colour.args = {
-  label:  'COLOUR',
+  label: 'COLOUR',
 
-  cssBackgroundColour:   'var(--color-yellow-400)',
-  cssForegroundColour:   'black',
+  cssBackgroundColour: 'var(--color-yellow-400)',
+  cssForegroundColour: 'black',
 };
 
 
@@ -220,9 +234,9 @@ Colour.args = {
 // │             Small version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Small = ({ shadow, label, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Small = ({ shadow, label, description, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -235,6 +249,7 @@ export const Small = ({ shadow, label, title, target, rel, shape, size, cssBackg
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -244,11 +259,11 @@ export const Small = ({ shadow, label, title, target, rel, shape, size, cssBackg
 
 // Change the argument defaults for this example
 Small.args = {
-  label:  'SMALL BUTTON',
-  size:   'small',
+  label: 'SMALL BUTTON',
+  size: 'small',
 
-  cssBackgroundColour:   'var(--color-sky-500)',
-  cssForegroundColour:   'var(--color-sky-100)',
+  cssBackgroundColour: 'var(--color-sky-500)',
+  cssForegroundColour: 'var(--color-sky-100)',
 };
 
 
@@ -260,9 +275,9 @@ Small.args = {
 // │             Large version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Large = ({ shadow, label, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Large = ({ shadow, label, description, title, target, rel, shape, size, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -275,6 +290,7 @@ export const Large = ({ shadow, label, title, target, rel, shape, size, cssBackg
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -284,11 +300,11 @@ export const Large = ({ shadow, label, title, target, rel, shape, size, cssBackg
 
 // Change the argument defaults for this example
 Large.args = {
-  label:  'LARGE BUTTON',
-  size:   'large',
+  label: 'LARGE BUTTON',
+  size: 'large',
 
-  cssBackgroundColour:   'var(--color-emerald-500)',
-  cssForegroundColour:   'var(--color-emerald-100)',
+  cssBackgroundColour: 'var(--color-emerald-500)',
+  cssForegroundColour: 'var(--color-emerald-100)',
 };
 
 
@@ -298,9 +314,9 @@ Large.args = {
 // │             Ghost version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Ghost = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Ghost = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -313,6 +329,7 @@ export const Ghost = ({ shadow, label, title, target, rel, shape, size, width, c
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}" width="${width}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -322,10 +339,10 @@ export const Ghost = ({ shadow, label, title, target, rel, shape, size, width, c
 
 // Change the argument defaults for this example
 Ghost.args = {
-  label:  'GHOST BUTTON',
-  shape:  'ghost',
-  cssBackgroundColour:   'var(--color-pink-200)',
-  cssForegroundColour:   'var(--color-pink-400)',
+  label: 'GHOST BUTTON',
+  shape: 'ghost',
+  cssBackgroundColour: 'var(--color-pink-200)',
+  cssForegroundColour: 'var(--color-pink-400)',
 };
 
 
@@ -336,9 +353,9 @@ Ghost.args = {
 // │            Outline version of the button              │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Outline = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Outline = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -351,6 +368,7 @@ export const Outline = ({ shadow, label, title, target, rel, shape, size, width,
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}" width="${width}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -360,10 +378,10 @@ export const Outline = ({ shadow, label, title, target, rel, shape, size, width,
 
 // Change the argument defaults for this example
 Outline.args = {
-  label:  'OUTLINE BUTTON',
-  shape:  'outline',
-  cssBackgroundColour:   'var(--color-sky-200)',
-  cssForegroundColour:   'var(--color-sky-400)',
+  label: 'OUTLINE BUTTON',
+  shape: 'outline',
+  cssBackgroundColour: 'var(--color-sky-200)',
+  cssForegroundColour: 'var(--color-sky-400)',
 };
 
 
@@ -374,9 +392,9 @@ Outline.args = {
 // │             Width version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const Wide = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const Wide = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -389,6 +407,7 @@ export const Wide = ({ shadow, label, title, target, rel, shape, size, width, cs
 
     <ldnpk-button ${wordShadow} href="https://londonparkour.com" target="${target}" rel="${rel}" title="${title}" shape="${shape}" size="${size}" width="${width}">
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -398,10 +417,10 @@ export const Wide = ({ shadow, label, title, target, rel, shape, size, width, cs
 
 // Change the argument defaults for this example
 Wide.args = {
-  label:  'WIDE BUTTON',
-  width:  '400px',
-  cssBackgroundColour:   'var(--color-violet-500)',
-  cssForegroundColour:   'var(--color-violet-100)',
+  label: 'WIDE BUTTON',
+  width: '400px',
+  cssBackgroundColour: 'var(--color-violet-500)',
+  cssForegroundColour: 'var(--color-violet-100)',
 };
 
 
@@ -413,9 +432,9 @@ Wide.args = {
 // │            Prefix version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const PrefixIcon = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const PrefixIcon = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -445,6 +464,7 @@ export const PrefixIcon = ({ shadow, label, title, target, rel, shape, size, wid
       </svg>
       
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -454,9 +474,9 @@ export const PrefixIcon = ({ shadow, label, title, target, rel, shape, size, wid
 
 // Change the argument defaults for this example
 PrefixIcon.args = {
-  label:  'GLYPH PREFIX',
-  cssBackgroundColour:   'var(--color-blue-500)',
-  cssForegroundColour:   'var(--color-blue-100)',
+  label: 'GLYPH PREFIX',
+  cssBackgroundColour: 'var(--color-blue-500)',
+  cssForegroundColour: 'var(--color-blue-100)',
 };
 
 
@@ -467,9 +487,9 @@ PrefixIcon.args = {
 // │            Suffix version of the button               │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const SuffixIcon = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const SuffixIcon = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -499,6 +519,7 @@ export const SuffixIcon = ({ shadow, label, title, target, rel, shape, size, wid
       </svg>
       
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -508,9 +529,9 @@ export const SuffixIcon = ({ shadow, label, title, target, rel, shape, size, wid
 
 // Change the argument defaults for this example
 SuffixIcon.args = {
-  label:  'GLYPH SUFFIX',
-  cssBackgroundColour:   'var(--color-blue-500)',
-  cssForegroundColour:   'var(--color-blue-100)',
+  label: 'GLYPH SUFFIX',
+  cssBackgroundColour: 'var(--color-blue-500)',
+  cssForegroundColour: 'var(--color-blue-100)',
 };
 
 
@@ -521,9 +542,9 @@ SuffixIcon.args = {
 // │         Wide Prefix version of the button             │
 // │                                                       │
 // ╰───────────────────────────────────────────────────────╯
-export const WidePrefixIcon = ({ shadow, label, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
+export const WidePrefixIcon = ({ shadow, label, description, title, target, rel, shape, size, width, cssBackgroundColour, cssForegroundColour, cssShadow }) => {
 
-  let wordShadow=""; if(shadow){ wordShadow="shadow"; }
+  let wordShadow = ""; if (shadow) { wordShadow = "shadow"; }
 
   let htmlString = /* html */`
     <style>
@@ -553,6 +574,7 @@ export const WidePrefixIcon = ({ shadow, label, title, target, rel, shape, size,
       </svg>
       
       ${label}
+      <div slot="description">${description}</div>
     </ldnpk-button>
   `
 
@@ -562,8 +584,8 @@ export const WidePrefixIcon = ({ shadow, label, title, target, rel, shape, size,
 
 // Change the argument defaults for this example
 WidePrefixIcon.args = {
-  label:  'GLYPH PREFIX',
-  width:  '25rem',
-  cssBackgroundColour:   'var(--color-blue-500)',
-  cssForegroundColour:   'var(--color-blue-100)',
+  label: 'GLYPH PREFIX',
+  width: '25rem',
+  cssBackgroundColour: 'var(--color-blue-500)',
+  cssForegroundColour: 'var(--color-blue-100)',
 };

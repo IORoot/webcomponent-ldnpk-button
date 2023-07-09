@@ -39,7 +39,7 @@ html += /* html */`
             display: inline-block;
 
             /* Size  */
-            padding: 0rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             margin-right: auto;
 
@@ -139,13 +139,30 @@ html += /* html */`
 html += /* html */`
     <a id="button">
         <div id="insideflex">
+
             <div id="prefix">
                 <slot name="prefix"></slot>
             </div>
-            <slot></slot>
+
+                <div class="
+                    flex
+                    flex-col
+                    gap-0
+                    text-left
+                    m-auto">
+
+                    <div class="leading-6">
+                        <slot></slot>
+                    </div>
+                    <div id="description" class="text-xs">
+                        <slot name="description"></slot>
+                    </div>
+
+                </div>
             <div id="suffix">
                 <slot name="suffix"></slot>
             </div>
+
         </div>
     </a>
 `;
@@ -251,6 +268,10 @@ class Button extends HTMLElement {
 
     get classAttribute() {
         return this.classList;
+    }
+
+    get descriptionAttribute() {
+        return this.getAttribute("description");
     }
 }
 
