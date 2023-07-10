@@ -22,6 +22,7 @@ let html = /* html */`
 // │                      STYLESHEET                       │
 // ╰───────────────────────────────────────────────────────╯
 html += /* html */` 
+<div>
     <style>
 
         :host {
@@ -30,6 +31,7 @@ html += /* html */`
             --foregroundColour: #000000;
             --shadow:           0 4px 6px -1px rgb(0 0 0 / 0.1), 
                                 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --padding:          0.5rem 1rem;
         }
         
 
@@ -39,7 +41,7 @@ html += /* html */`
             display: inline-block;
 
             /* Size  */
-            padding: 0.5rem 1rem;
+            padding: var(--padding);
             border-radius: 0.5rem;
             margin-right: auto;
 
@@ -52,11 +54,6 @@ html += /* html */`
             text-decoration: none;
             text-align: center;
             line-height: 3rem;
-        }
-
-        #insideflex {
-            display: flex;
-            gap: 0.5rem;
         }
 
         .shadow {
@@ -137,8 +134,8 @@ html += /* html */`
 // │                       TEMPLATE                        │
 // ╰───────────────────────────────────────────────────────╯
 html += /* html */`
-    <a id="button" class="">
-        <div id="insideflex">
+    <a id="button" class="overflow-hidden">
+        <div id="insideflex" class="flex gap-0 sm:gap-2">
 
             <div id="prefix">
                 <slot name="prefix"></slot>
@@ -150,12 +147,14 @@ html += /* html */`
                     gap-0
                     text-left
                     mr-auto
-                    my-auto">
+                    my-auto
+                    shrink">
 
-                    <div class="leading-6">
+                    <div class="text-sm md:text-base leading-6">
                         <slot></slot>
                     </div>
-                    <div id="description" class="text-xs">
+                    <div id="description" class="text-xs 
+                        hidden sm:block">
                         <slot name="description"></slot>
                     </div>
 
@@ -166,6 +165,7 @@ html += /* html */`
 
         </div>
     </a>
+</div>
 `;
 
 // ╭───────────────────────────────────────────────────────╮
